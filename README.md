@@ -71,7 +71,7 @@ Inside the .env file you only need to input your connection string to your datab
 
 Inside your models folder add an item.js file this will be the file that holds your schema for how data is formatted in your database.
 
-The Schema should look like:
+The Schema should look something like:
 <pre>
 const mongoose = require("mongoose")
 
@@ -84,4 +84,10 @@ const Item = mongoose.model("Item", itemSchema)
 
 module.exports = Item
 </pre>
+
+This allows you to define what a document will look like in your mongoDB database (an object) and will allow you to create, update and delete items based on the key:value pairs inside the item as well as the generated id each item gets when created.
+
+### controllers
+
+
 
