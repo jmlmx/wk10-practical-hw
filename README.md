@@ -13,7 +13,7 @@ Open Postman and MongoDB Atlas to test the endpoints and data storage:
 
 In Postman change the body request being sent to raw JSON data
 
-### Create An Item
+## Create An Item
 For creating an item, in the url type in localhost:3000/items and make sure the request type is POST:<br>
 in the request body type in:<br>
 <pre>{
@@ -25,11 +25,11 @@ and hit send
 
 It should then show the item in the response body as well as a generated id
 
-### Get/View All Items
+## Get/View All Items
 For viewing all items, in the url type in localhost:3000/items and make sure the request type is GET:<br>
 you do not need to enter any json data it will either show you an array of "item" objects if you've created some or an empty array if there are none to show
 
-### Get A Specific Item
+## Get A Specific Item
 For getting a item, in the url type in localhost:3000/items and make sure the request type is POST:<br>
 in the request body type in:<br>
 <pre>{
@@ -43,13 +43,13 @@ It should then show the item in the response body as well as a generated id, the
 
 It should then respond with the same "item" object just created
 
-### Update An Item
+## Update An Item
 For updating an item you'll need to input the id into the url after items like before and change the request type to PUT:<br>
 you would then change whatever information there is in the item name and/or price and hit send
 
 you should then see the  newly updated item with the same id #
 
-### Delete An Item
+## Delete An Item
 For updating an item you'll need to input the id into the url after items like before and change the request type to DELETE:<br>
 You do not need to send any json data in the request body for this one, like the "view all items" request<br>
 
