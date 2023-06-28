@@ -1,93 +1,59 @@
-# Items API
+# Wk 10 Practical Items API
 
-##  Setup -----------
 
-create a directory titled "items-api"
+## How To Run The API ----------------
 
-go into the directory and add a server.js and an app.js file (in that order)
+After forking and downloading the files to your local repository open it and then the terminal in vs code and create a .env file
 
-add mvc folders for MVC(Models folder, Views folder(not necessary now), Controllers folder) as well as a routes folder
+Within that .env file you should input your MongoDb Atlas connection string and set it to a variable named "MONGO_URI" to connect to a database for storing your data, then save it.
 
-add a .gitignore file then run "npm init -y " command to initialize node environment
+In the terminal type in "npm start", you should see 2 confirmation messages that you're connected to mongodb and that you're listening on port 3000
 
-run "npm i express mongoose morgan dotenv" to add these dependencies, add a .env file to to your projects root directory and inside add "node_modules" and ".env" to have it ignore pushing these files to github.
+Open Postman and MongoDB Atlas to test the endpoints and data storage:
 
-inside your package.json in your scripts section add a "dev" script that is set to "nodemon server.js"
+In Postman change the body request being sent to raw JSON data
 
-Initialize your file as a github repo in your terminal by running "git init" in your terminal
-
-  ## Pushing To Github ------------
-
-  Go to "Github.com/new", create a new repo on Github and name it appropriately
-
-  In your terminal run "git add -A", then run "git commit -m "(add relevant message for what's been done")
-
-  Then paste the code for pushing an existing repository from the command line into your terminal
-
-  git add -A, git commit -m "relevant message", then git push each time you want to save to your repo on github
-
-## Building the Api --------------
-
-### Server.js
-
-Inside the server.js file we want to begin by requiring certain dependencies so that we can utilize their functions
-look like this: 
-
-<pre>require("dotenv").config()
-const app = require("./app")
-const mongoose = require("mongoose")
-const PORT = process.env.PORT || 3000</pre>
-
- These will allow you to connect to your mongodb database, listen on a port, load .env file content when necessary
-
-You would then write code to connect to your MONGO_URI connection string
-and listen on a specified port(console.logging confirmations when both are running)
-
-### App.js
-
-The app.js is similar to server.js you need to require a few more dependencies and declare a couple variables, something like this:
-
-<pre>
-const express = require("express")
-const morgan = require("morgan")
-const itemRoutes = require("./routes/itemRoutes")
-const app = express()
-
-app.use(express.json())
-app.use(morgan("combined"))
-app.use("/items", itemRoutes)
-
-module.exports = app
+### Create An Item
+For creating an item, in the url type in localhost:3000/items and make sure the request type is POST:<br>
+in the request body type in:<br>
+<pre>{
+    "name": "<item name>",
+    "price": "<item price>"
+}
 </pre>
+and hit send
 
-This will allow you to utilize express to render json data, morgan to log requests in your terminal, and declare the path in your directory that pulls from your routes folder. It will also allow you to define the type of log-style of morgan, and finally initialize the url for your routes
+It should then show the item in the response body as well as a generated id
 
-### .env
+### Get/View All Items
+For viewing all items, in the url type in localhost:3000/items and make sure the request type is GET:<br>
+you do not need to enter any json data it will either show you an array of "item" objects if you've created some or an empty array if there are none to show
 
-Inside the .env file you only need to input your connection string to your database(found in your MongoDB Atlas), add the appropriate collection name in between the "/" and "?" and declare it as MONGO_URI. 
-
-
-### Models
-
-Inside your models folder add an item.js file this will be the file that holds your schema for how data is formatted in your database.
-
-The Schema should look something like:
-<pre>
-const mongoose = require("mongoose")
-
-const itemSchema = new mongoose.Schema({
-    item: {type: String, required : true},
-    price: {type: Number, required: true}
-})
-
-const Item = mongoose.model("Item", itemSchema)
-
-module.exports = Item
+### Get A Specific Item
+For getting a item, in the url type in localhost:3000/items and make sure the request type is POST:<br>
+in the request body type in:<br>
+<pre>{
+    "name": "<item name>",
+    "price": "<item price>"
+}
 </pre>
+and hit send
 
-This allows you to define what a document will look like in your mongoDB database (an object) and will allow you to create, update and delete items based on the key:value pairs inside the item as well as the generated id each item gets when created.
+It should then show the item in the response body as well as a generated id, then take that id and input it into the url after "items/" and change the request type to GET and hit send
 
-### controllers
+It should then respond with the same "item" object just created
+
+### Update An Item
+For updating an item you'll need to input the id into the url after items like before and change the request type to PUT:<br>
+you would then change whatever information there is in the item name and/or price and hit send
+
+you should then see the  newly updated item with the same id #
+
+### Delete An Item
+For updating an item you'll need to input the id into the url after items like before and change the request type to DELETE:<br>
+You do not need to send any json data in the request body for this one, like the "view all items" request<br>
+
+You should see a confirmation message saying "Item Deleted"
 
 
 

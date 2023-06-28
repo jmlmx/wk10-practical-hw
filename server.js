@@ -8,5 +8,5 @@ mongoose.connection.once('open', () => console.log("Mongo is vibin' with us...")
 
 
 app.listen(PORT, () => {
-    console.log(`We are hot and rolling on Port ${PORT}`)
+    console.log(`We are hot and rolling on Port ${PORT}!`)
 })
